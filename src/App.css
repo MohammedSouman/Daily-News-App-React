@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.card-body .card-title {
+  display: -webkit-box;
+  -webkit-line-clamp : 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-body .card-text {
+  display: -webkit-box;
+  -webkit-line-clamp : 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
