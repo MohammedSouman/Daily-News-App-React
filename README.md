@@ -1,1 +1,1 @@
-# Daily New App Created From React
+# Daily News App Created From React
