@@ -21,7 +21,7 @@ export class News extends Component {
     }
 
     async updateNews() {
-      const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}${this.props.category?`&category=${this.props.category}`:""}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}${this.props.search?(`&q=${this.props.search}`):""}`
+      const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}${this.props.category?`&category=${this.props.category}`:""}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
       this.setState({loading : true});
       let data = await fetch(url)
       let parsedData = await data.json()
@@ -30,7 +30,7 @@ export class News extends Component {
         totalResults: parsedData.totalResults,
         loading : false,
       })
-      document.title = this.capitalize(this.props.category) + " News-Monkey"
+      document.title = this.capitalize(this.props.category) + " - News Monkey"
     }
 
 
@@ -56,7 +56,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container" id="news-container">
-        <h2 className={`my-5 text-center text-${this.props.textColor} text-capitalized`}>Top headlines from {this.capitalize(this.props.category)}</h2>
+        <h2 className={`my-5 text-center text-${this.props.textColor} text-capitalize`}>Top {this.props.category} headlines from News-Monkey</h2>
         {this.state.loading && <Spinner/>}
         <div className="row my-3">
         {!(this.state.loading )&& this.state.articles.map((ele) => {
@@ -76,8 +76,8 @@ export class News extends Component {
         })
       }
         <div className="d-flex gap-2 justify-content-between my-3 mx-2">
-        <button disabled={this.state.page <= 1} onClick={this.handlePrevClick} className="btn btn-warning">&larr; Previous</button>
-        <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)} className="btn btn-warning" onClick={this.handleNextClick}>Next &rarr;</button>
+        <button disabled={this.state.page <= 1} onClick={this.handlePrevClick} className={`btn btn-warning text-${this.props.textColor}`}>&larr; Previous</button>
+        <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)} className={`btn btn-warning text-${this.props.textColor}`} onClick={this.handleNextClick}>Next &rarr;</button>
         </div>
       </div>
       </div>
@@ -98,37 +98,3 @@ News.defaultProps = {
 
 export default News
 
-// <---New Func--->
-// let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=4a8172674da04716b8ded2af192c0de9&page=1&pageSize=${this.props.pageSize}`
-      // this.setState({loading : true});
-      // let data = await fetch(url)
-      // let parsedData = await data.json()
-      // this.setState({
-      //   articles :  parsedData.articles, 
-      //   totalResults: parsedData.totalResults,
-      //   loading : false
-      // })
-
-//<----Prev BTN--->
-// let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=4a8172674da04716b8ded2af192c0de9&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`
-      // this.setState({loading : true})
-      // let data = await fetch(url)
-      // let parsedData = await data.json()
-      // this.setState({
-      //   articles :  parsedData.articles,
-      //   page : this.state.page - 1,
-      //   loading : false
-      // })
-
-//<-----Next BTN --->
-// if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))) {
-  // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=4a8172674da04716b8ded2af192c0de9&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`
-  // this.setState({loading : true})
-  // let data = await fetch(url)
-  // let parsedData = await data.json()
-  // this.setState({
-  //   articles :  parsedData.articles,
-  //   page : this.state.page + 1,
-  //   loading : false
-  // })
-// }

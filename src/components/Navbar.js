@@ -6,7 +6,7 @@ export class Navbar extends Component {
     let {toggleMode, mode, textColor} = this.props
     return (
       <div>
-        <nav className={`navbar navbar-expand-lg bg-${mode}`}>
+        <nav className={`navbar navbar-expand-lg bg-${mode} d-flex justify-content-center`}>
           <div className="container-fluid">
             <Link className={`navbar-brand text-${textColor}`} to="/">NewMonkey</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,11 +38,12 @@ export class Navbar extends Component {
             </ul>
             </div>
         </div>
-        <div className="mx-2 d-flex gap-2">
-          <button className={`btn btn-dark border border-2 border-${textColor} align-self-center`} onClick={toggleMode} style={{width:  "30px", height: "30px"}}></button>
-          <input type="text" className="px-2 mx-1 border border-2 border-light" placeholder='Search' />
-          <Link className={`nav-link text-${textColor}`} to="/search" onClick={this.props.searchFunc}>Search</Link>
-        </div>
+          {/* <button className={`btn btn-dark border border-2 border-${textColor} align-self-center`} onClick={toggleMode} style={{width:  "30px", height: "30px"}}></button> */}
+          
+          <div class="form-check form-switch align-self-center" style={{width: "10%"}}>
+            <label className={`form-check-label text-${textColor}`} for="change-theme">Dark Mode</label>
+            <input className="form-check-input p-2" type="checkbox" id="change-theme" style={{padding: ".75rem 1.5rem !important"}} onClick={toggleMode}/>
+        </div> 
         </nav>
       </div>
     )
